@@ -23,7 +23,7 @@ from itertools import count
 
 from ddpg_agent import Agent, Config
 
-def train_ddpg(agent, n_episodes=1000, max_t=2000, print_every=100):
+def train_ddpg(agent, env, brain_name, num_agents, n_episodes=1000, max_t=2000, print_every=100):
     scores_deque = deque(maxlen=print_every)
     scores_hist = []
     scores_avg_hist = []
@@ -103,7 +103,7 @@ if __name__ == "__main__":
     print(agent.actor_local)
     print(agent.critic_local)
 
-    scores, scores_avg_hist = train_ddpg(agent, n_episodes=1000)
+    scores, scores_avg_hist = train_ddpg(agent, env, brain_name=brain_name, num_agents=num_agents, n_episodes=1000)
 
     fig = plt.figure()
     ax = fig.add_subplot(111)

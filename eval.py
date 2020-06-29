@@ -23,7 +23,7 @@ from itertools import count
 
 from ddpg_agent import Agent, Config
 
-def eval_ddpg(agent, n_episodes=1000, max_t=2000, print_every=100):
+def eval_ddpg(agent, env, brain_name, num_agents, n_episodes=1000, max_t=2000, print_every=100):
     scores_deque = deque(maxlen=print_every)
     scores_hist = []
     scores_avg_hist = []
@@ -101,7 +101,7 @@ if __name__ == "__main__":
     agent.actor_local.load_state_dict(torch.load('checkpoint_actor.pth'))
     agent.critic_local.load_state_dict(torch.load('checkpoint_critic.pth'))
 
-    scores, scores_avg_hist = eval_ddpg(agent, n_episodes=100)
+    scores, scores_avg_hist = eval_ddpg(agent, env, brain_name=brain_name, num_agents=num_agents, n_episodes=100)
 
     fig = plt.figure()
     ax = fig.add_subplot(111)
